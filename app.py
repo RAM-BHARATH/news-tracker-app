@@ -90,6 +90,18 @@ def get_news():
                                       page=1)
     return all_articles
 
+# @app.route("/ind-cat", methods=["POST", "GET"])
+# def get_individual_category_news():
+
+#     category_news = newsapi.get_everything(category)
+
+@app.route("/business")
+def get_individual_category_news():
+    cat_news = newsapi.get_top_headlines(
+                                    category='business',
+                                    language='en')
+    
+
 @app.route("/top-headlines-today")
 def get_top_headlines_today():
     user_categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]

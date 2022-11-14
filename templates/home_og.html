@@ -89,26 +89,162 @@
              </div>
          </nav>
        </header>
-       <div class="flex w-3/4 mx-auto">
-         <div class="w-96 h-96 m-2 bg-gray-500">
+       <!-- {{ all_articles }} -->
+       {% for article_category in all_articles.keys(): %}
+          <div class="w-3/4 mx-auto">
+            <h2 class="text-2xl">{{ article_category.capitalize() }}</h2>
+          </div>
+          <div class="flex w-3/4 mx-auto mb-8 pb-8">
+            {% for i in range(5): %}
+              <div class="w-80 h-96 m-4 rounded-lg hover:" style="background: #C77DFF;">
+                <!-- {{ all_articles[article_category]['articles'][i] }} -->
+                <div class="flex flex-col justify-between">
+                  <div class="pb-2">
+                    <img src="{{ all_articles[article_category]['articles'][i]['urlToImage'] }}" alt="" class="h-48 w-96 rounded-t-lg">
+                  </div>
+                  <div class="flex flex-col justify-between">
+                    <div style="color: #7B2CBF;">
+                      {{ all_articles[article_category]['articles'][i]['title'] }}
+                    </div>
+                    <div class="hover:text-white text-purple-900">
+                      <!-- style="color: #7B2CBF;"  -->
+                      <a href="{{ all_articles[article_category]['articles'][i]['url'] }}" target="_blank">Read more...</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+    {% else %}
+        <header>
+          <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white">
+            <div class="flex  flex-wrap justify-center items-center">
+              <a href="/" class="w-16 block">
+                <img src="../static/images/logo.svg" alt="">
+              </a>
+              <!-- <form action="/search" method="post" class="flex flex-col justify-center">
+                <input type="text" name="search" id="search" class="border my-4"/>
+              </form> -->
+              <form action="/search" method="post" class="flex items-center justify-center m-auto">
+                <div class="flex flex-col items-center justify-center">
+                  <input type="text" name="search" id="search" class="border"/>
+                </div>
+              </form>
+            </div>
+            
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="menu-button"
+                class="h-6 w-6 cursor-pointer md:hidden block"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
+              <ul
+                class="
+                  pt-4
+                  text-base text-gray-700
+                  md:flex
+                  md:justify-between 
+                  md:pt-0"
+              >
+                <li>
+                  <a class="md:p-4 py-2 block hover:text-purple-400" href="#">All categories</a>
+                </li>
+                <li>
+                  <a class="md:p-4 py-2 block hover:text-purple-400" href="#">All Sources</a>
+                </li>
+                <li class="flex items-center">
+                  <select name="categories" id="categories">
+                    <!-- "business", "entertainment", "general", "health", "science", "sports", "technology" -->
+                    {% for category in categories %}
+                      <option value="{{ category }}">{{ category.capitalize() }}</option>
+                    {% endfor %}
+                    <!-- <option value="business">Business</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="general">General</option>
+                    <option value="health">Health</option>
+                    <option value="science">Science</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option> -->
+                  </select>
+                </li>
+                <li>
+                  {% if session %}
+                    <a class="md:p-4 py-2 block hover:text-purple-400 text-purple-500" href="/user-info">{{ session.userinfo.name }}</a>
+                  {% else %}
+                    <a class="md:p-4 py-2 block hover:text-purple-400 text-purple-500" href="/login">Log in</a>
+                  {% endif %}
+                </li>
+                <li>
+                  {% if session %}
+                    <a class="md:p-4 py-2 block hover:text-purple-400 text-purple-500" href="/logout">Log out</a>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+        </nav>
+      </header>
+      <!-- <div class="flex w-3/4 mx-auto">
+        <div class="w-96 h-96 m-2 bg-gray-500">
             <div>
               <img src="" alt="">
+              <div>
+
+              </div>
             </div>
-         </div>
-         <div class="w-96 h-96 m-2 bg-gray-500">
+        </div>
+        <div class="w-96 h-96 m-2 bg-gray-500">
           h
-         </div>
-         <div class="w-96 h-96 m-2 bg-gray-500">
+        </div>
+        <div class="w-96 h-96 m-2 bg-gray-500">
           h
-         </div>
-         <div class="w-96 h-96 m-2 bg-gray-500">
+        </div>
+        <div class="w-96 h-96 m-2 bg-gray-500">
           h
-         </div>
-       </div>
-       {{ all_articles }}
-    {% else %}
-        <h1>Welcome Guest</h1>
-        <p><a href="/login">Login</a></p>
+        </div>
+      </div> -->
+      <div id="content">
+
+      </div>
+      <!-- {{ all_articles.keys() }} -->
+      {% for article_category in all_articles.keys(): %}
+        <div class="w-3/4 mx-auto">
+          <h2 class="text-2xl">{{ article_category.capitalize() }}</h2>
+        </div>
+        <div class="flex w-3/4 mx-auto mb-8 pb-8">
+          {% for i in range(5): %}
+            <div class="w-80 h-96 m-4 rounded-lg hover:" style="background: #C77DFF;">
+              <!-- {{ all_articles[article_category]['articles'][i] }} -->
+              <div class="flex flex-col justify-between">
+                <div class="pb-2">
+                  <img src="{{ all_articles[article_category]['articles'][i]['urlToImage'] }}" alt="" class="h-48 w-96 rounded-t-lg">
+                </div>
+                <div class="flex flex-col justify-between">
+                  <div style="color: #7B2CBF;">
+                    {{ all_articles[article_category]['articles'][i]['title'] }}
+                  </div>
+                  <div class="hover:text-white text-purple-900">
+                    <!-- style="color: #7B2CBF;"  -->
+                    <a href="{{ all_articles[article_category]['articles'][i]['url'] }}" target="_blank">Read more...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <!-- {} -->
     {% endif %}
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script>
@@ -117,23 +253,12 @@
 
       console.log(button)
 
+
       button.addEventListener('click', () => {
         menu.classList.toggle('hidden');
         console.log(menu.classList)
       });
 
-      
-      // window.watsonAssistantChatOptions = {
-      //   integrationID: "c17bc8aa-990a-43e0-8d08-964f68a23c1d", // The ID of this integration.
-      //   region: "jp-tok", // The region your integration is hosted in.
-      //   serviceInstanceID: "fc27de01-58f5-4803-9744-ec8799654c59", // The ID of your service instance.
-      //   onLoad: function(instance) { instance.render(); }
-      // };
-      // setTimeout(function(){
-      //   const t=document.createElement('script');
-      //   t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-      //   document.head.appendChild(t);
-      // });
     </script>
   </body>
 </html>
