@@ -51,16 +51,13 @@
                    md:justify-between 
                    md:pt-0"
                >
-                 <li>
-                   <a class="md:p-4 py-2 block hover:text-purple-400" href="/">All categories</a>
-                 </li>
                  <!-- <li>
                    <a class="md:p-4 py-2 block hover:text-purple-400" href="#">All Sources</a>
                  </li> -->
                  <li class="flex items-center">
                   <select name="categories" id="categories">
                     <!-- "business", "entertainment", "general", "health", "science", "sports", "technology" -->
-                    <option value="">all</option>
+                    <option value="">All Categories</option>
                     {% for category in categories %}
                       <option value="{{ category }}">{{ category.capitalize() }}</option>
                     {% endfor %}
@@ -161,15 +158,10 @@
                   md:justify-between 
                   md:pt-0"
               >
-                <li>
-                  <a class="md:p-4 py-2 block hover:text-purple-400" href="#">All categories</a>
-                </li>
-                <li>
-                  <a class="md:p-4 py-2 block hover:text-purple-400" href="#">All Sources</a>
-                </li>
                 <li class="flex items-center">
                   <select name="categories" id="categories">
                     <!-- "business", "entertainment", "general", "health", "science", "sports", "technology" -->
+                    <option value="">All Categories</option>
                     {% for category in categories %}
                       <option value="{{ category }}">{{ category.capitalize() }}</option>
                     {% endfor %}

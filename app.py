@@ -131,50 +131,57 @@ def search_news():
 def get_business():
     cat_news = newsapi.get_top_headlines(
                                     category='business',
-                                    language='en')
-    return render_template('individual_category.html',session=session.get('user'), all_articles= cat_news, categories=['business'])
+                                    language='en',
+                                    page_size=50)
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='business', categories=all_categories)
 
 @app.route("/entertainment")
 def get_entertainment():
     cat_news = newsapi.get_top_headlines(
                                     category='entertainment',
                                     language='en')
-    return cat_news
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='entertainment', categories=all_categories)
+
 
 @app.route("/general")
 def get_general():
     cat_news = newsapi.get_top_headlines(
                                     category='general',
                                     language='en')
-    return cat_news
+    # return cat_news
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='general', categories=all_categories)
 
 @app.route("/health")
 def get_health():
     cat_news = newsapi.get_top_headlines(
                                     category='health',
                                     language='en')
-    return cat_news
+    # return cat_news
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='health', categories=all_categories)
 
 @app.route("/science")
 def get_science():
     cat_news = newsapi.get_top_headlines(
                                     category='science',
                                     language='en')
-    return cat_news
+    # return cat_news
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='science', categories=all_categories)
 
 @app.route("/sports")
 def get_sports():
     cat_news = newsapi.get_top_headlines(
                                     category='sports',
                                     language='en')
-    return render_template(cat_news)
+    # return render_template(cat_news)
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='sports', categories=all_categories)
 
 @app.route("/technology")
 def get_technology():
     cat_news = newsapi.get_top_headlines(
                                     category='technology',
                                     language='en')
-    return cat_news
+    # return cat_news
+    return render_template('individual_category.html',session=session.get('user'), articles=cat_news, article_category='technology', categories=all_categories)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=env.get("PORT", 5000))
